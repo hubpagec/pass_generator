@@ -15,7 +15,7 @@ pipeline {
         stage('Build Docker image') {
             steps{
                 script{
-                    dockerapp = docker.build("devops/pass_generator:${env.BUILD}",
+                    dockerapp = docker.build("192.168.3.138/devops/pass_generator:${env.BUILD}",
                         '-f ./Dokerfile .')
                 }
 
@@ -24,7 +24,7 @@ pipeline {
         stage('Push Docker Image') {
             steps{
                 script{
-                    docker.withRegistry('http://192.168.3.138', 'harbor'){
+                    docker.withRegistry('http://192.168.3.138/devops', 'harbor'){
                         dockerapp.push('latest')
                         dockerapp.push("${env.BUILD_ID}")
                     }
