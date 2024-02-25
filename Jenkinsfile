@@ -4,9 +4,14 @@ pipeline {
     stages('Construção da imagem'){
         stage('Checkout Source') {
             steps{
-                git url: 'https://github.com/hubpagec/pass_generator', branch: 'main'
+                script {
+                    git branch: 'main',
+                        credentialsId: 'Credential ID',
+                        url: 'https://github.com/hubpagec/pass_generator.git'
+                }
             }
         }
+
         stage('Build Docker image') {
             steps{
                 script{
