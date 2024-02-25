@@ -16,7 +16,7 @@ pipeline {
             steps{
                 script{
                     dockerapp = docker.build("192.168.3.138/devops/pass_generator:${env.BUILD}",
-                        '-f ./Dokerfile .')
+                        '-f ./Dockerfile .')
                 }
 
             }
