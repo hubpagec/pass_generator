@@ -1,9 +1,9 @@
-FROM node:latest as build-stage
+FROM node:14-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY ./ .
-RUN npm run build
+RUN npm run build --force
 CMD ["npm", "start"]
 
 FROM nginx as production-stage
